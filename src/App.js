@@ -9,6 +9,7 @@ import Admin_Chart from './Adminpage/Admin_Chart';
 import CourseDetails from './Adminpage/Course/CourseDetails';
 import Updatecourse from './Adminpage/Course/Updatecourse';
 import AddCourse from './Adminpage/Course/AddCourse';
+import History from './Adminpage/History';
 
 import StaffDetails from './Adminpage/Staff/StaffDetails';
 import UpdateStaff from './Adminpage/Staff/UpdateStaff';
@@ -47,12 +48,17 @@ import LeaveGet from './Staffpage/LeaveGet';
 
 import Student_Dashboard from './StudentPages/Student_Dashboard';
 import Viewattendance from './StudentPages/Viewattendance';
+import Edit_Attendance from './Staffpage/Edit_Attendance';
 import ResultView from './StudentPages/ResultView';
 import View_Student_Notif from './StudentPages/View_Student_Notif';
 import Apply_Student_Leave from './StudentPages/Apply_Student_Leave';
 import Get_Student_Leave from './StudentPages/Get_Student_Leave';
 import Student_Chart from './StudentPages/Student_Chart';
 import D_GET from './StudentPages/D_GET';
+
+import Parent from './Adminpage/Example/Parent';
+
+
 function App() {
   return (
     <Router>
@@ -65,6 +71,8 @@ function App() {
         <Route path="/coursedetails/" element={<CourseDetails />} />
         <Route path="/updatecourse/:id/" element={<Updatecourse />} />
         <Route path="/addcourse/" element={<AddCourse/>} />
+
+        <Route path="/history" element={<History />} />
 
         <Route path="/staffdetails" element={<StaffDetails/>} />
         <Route path="/updatestaff/:id/" element={<UpdateStaff/>} />
@@ -90,6 +98,7 @@ function App() {
         <Route path="/attendance/" element={<Attendance/>} />
         <Route path="/demoatt/" element={<Demoatt/>} />
         <Route path="/viewattendance/" element={<AttendanceView/>} />
+        <Route path="/updateattendance/:id/" element={<Edit_Attendance/>} />
         <Route path="/staff-chart/" element={<Staff_Chart/>} />
 
         <Route path="/addresult" element={<Addresult/>} />
@@ -109,6 +118,10 @@ function App() {
         <Route path="/apply_student-leave/" element={<Apply_Student_Leave/>} />
         <Route path="/get-student-leave/" element={<Get_Student_Leave/>} />
         <Route path="/student-chart/" element={<D_GET/>} />
+
+        <Route path="/parent/" element={<Parent/>} />
+
+     
         
         
       </Routes>

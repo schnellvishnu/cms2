@@ -17,24 +17,24 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useMediaQuery } from 'react-responsive';
 
 function Admin_Chart() {
-                    const[data,setData]=useState([])
-                    const[staff_data,setStaff_Data]= useState([])  
-                    const[student_data,setStudent_Data]= useState([])   
-                    const[subject_data,setSubject_Data]= useState([]) 
-                    const[result,setResult]= useState([]) 
-                    const[course,setCourse] =useState({}) 
-                    const[attendanc_data,setAttendanceData]=useState([])          
-                     const[pass,setPass]=useState("")
-                     const[fail,setFail]=useState("")
-                     const[present,setPresent]=useState("") 
-                     const[absent,setAbsent]=useState("")
-                     const [chartData, setChartData] = useState({});
+        const[data,setData]=useState([])
+        const[staff_data,setStaff_Data]= useState([])  
+        const[student_data,setStudent_Data]= useState([])   
+        const[subject_data,setSubject_Data]= useState([]) 
+        const[result,setResult]= useState([]) 
+        const[course,setCourse] =useState({}) 
+        const[attendanc_data,setAttendanceData]=useState([])          
+        const[pass,setPass]=useState("")
+        const[fail,setFail]=useState("")
+        const[present,setPresent]=useState("") 
+        const[absent,setAbsent]=useState("")
+        const [chartData, setChartData] = useState({});
                 
-                     var loggedInUsername=window.localStorage.getItem('loggedInUsername')
-                     var loggedInPassword=window.localStorage.getItem('loggedInUserPassword')
-                     var loggedInUserrole=window.localStorage.getItem('loggedInUserrole')
+        var loggedInUsername=window.localStorage.getItem('loggedInUsername')
+        var loggedInPassword=window.localStorage.getItem('loggedInUserPassword')
+        var loggedInUserrole=window.localStorage.getItem('loggedInUserrole')
                 
-                     const Item = styled(Paper)(({ theme }) => ({
+        const Item = styled(Paper)(({ theme }) => ({
                                         backgroundColor: '#fff',
                                         ...theme.typography.body2,
                                         padding: theme.spacing(2),
@@ -48,22 +48,20 @@ function Admin_Chart() {
 function getAdmin(nameprops){
                     axios.get("http://localhost:8000/loginapp/signin/")
                     .then((res)=>{
-                                        res.data.map(option=>{
+                                  res.data.map(option=>{
                                                          
-                                                            if(option.username==loggedInUsername){
-                                                                             window.localStorage.setItem('Name', option.name);
-                                                                       }    
-                                                                 })            
-                                                            })                 
-                                                         }                               
+                                          if(option.username==loggedInUsername){
+                                                window.localStorage.setItem('Name', option.name);
+                                                  }    
+                                              })            
+                                      })                 
+                                   }                               
 var NAME=window.localStorage.getItem('Name')
 function getStaffCount(){
                     axios
                     .get("http://localhost:8000/adminapp/staffdetail/")
                     .then((res)=>{
-                                    
-                                               
-                                      
+                                          
                                     setStaff_Data(res.data)
             
                                 })
@@ -72,9 +70,7 @@ function getStudent_Count(){
                     axios
                     .get("http://localhost:8000/adminapp/studentdetail/")
                     .then((res)=>{
-                                    
-                                               
-                                      
+                                       
                                     setStudent_Data(res.data)
             
                                 })
@@ -96,9 +92,7 @@ function getCourse_Count(){
               axios
               .get("http://localhost:8000/staffapp/addresult/")
               .then((res)=>{
-                              
-                                         
-                                
+                                          
                               setResult(res.data)
       
                           })
@@ -107,8 +101,6 @@ function getCourse_Count(){
         axios
         .get("http://localhost:8000/adminapp/subjectdetail/")
         .then((res)=>{
-                        
-                                   
                           
                         setSubject_Data(res.data)
 
@@ -117,18 +109,18 @@ function getCourse_Count(){
              
              
 useEffect(()=>{
-                    getStaffCount()
-                   getStudent_Count()
-                   getAdmin()
-                   getCourse_Count()
-                   getResult()
-                   getSubject()
+                  getStaffCount()
+                  getStudent_Count()
+                  getAdmin()
+                  getCourse_Count()
+                  getResult()
+                  getSubject()
                    
                              
                },[]) 
 
   const count_maths=student_data.filter(item=>
-                    item. course =="BSC MATHS"
+                    item.course =="BSC MATHS"
                     )  
   const count_bcom=student_data.filter(item=>
                       item. course =="BCOM"
@@ -203,7 +195,7 @@ useEffect(()=>{
               ];  
               
   const uData = [count_bcom.length, count_maths.length, count_computer.length,count_physics.length, 
-   count_malayalam.length, count_englisg.length, count_history.length,count_mamalayalam.length,count_mcom.length,count_mca.length,count_mscmaths.length];
+  count_malayalam.length, count_englisg.length, count_history.length,count_mamalayalam.length,count_mcom.length,count_mca.length,count_mscmaths.length];
  
   const xLabels = [
                 'BCOM',
@@ -342,7 +334,7 @@ const isMobile = useMediaQuery({ maxWidth: 767 });
       <div class="card" style={{backgroundColor:"#66CDAA"}}>
 
 <div class="card-body">
-<h5 class="card-title">Admin Panel- Staff-Student Pie Chart</h5>
+<h5 class="card-title"  style={{color:"red"}}>Admin Panel- Staff-Student Pie Chart</h5>
 <PieChart 
    
    series={[
@@ -374,7 +366,7 @@ const isMobile = useMediaQuery({ maxWidth: 767 });
  <div class="card" style={{backgroundColor:"#ADD8E6"}}>
 
 <div class="card-body">
-<h5 class="card-title">Total Students In Each Course</h5>
+<h5 class="card-title"  style={{color:"red"}}>Total Students In Each Course</h5>
 <BarChart
       // width={880}
       height={300}
@@ -406,7 +398,7 @@ const isMobile = useMediaQuery({ maxWidth: 767 });
       <div class="card" style={{backgroundColor:"#8B0000	"}}>
 
 <div class="card-body">
-<h5 class="card-title">Admin Panel- Staff-Student Pie Chart</h5>
+<h5 class="card-title"  style={{color:"white"}}>Total Students Pass In Each Course</h5>
 <PieChart 
    
    series={[
@@ -438,7 +430,7 @@ const isMobile = useMediaQuery({ maxWidth: 767 });
  <div class="card" style={{backgroundColor:"#4B0082"}}>
 
 <div class="card-body">
-<h5 class="card-title">Total Students Failed In Each Course</h5>
+<h5 class="card-title"  style={{color:"white"}}>Total Students Failed In Each Course</h5>
 <PieChart 
    
    series={[

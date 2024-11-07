@@ -3,11 +3,12 @@ import Login, { Render } from 'react-login-page';
 import Logo from 'react-login-page/logo';
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import Alert from '@mui/material/Alert';
 function Siginin() {
    const[username,setUsername]=useState("") 
    const[password,setPassword]=useState("") 
    const navigate = useNavigate();
-
+   const[alertuse,setAlertuse]=useState("")
    const handleSubmit=(e)=>{ 
     
         e.preventDefault();
@@ -27,84 +28,62 @@ function Siginin() {
                                     window.localStorage.setItem('loggedInUsername', username);
                                     window.localStorage.setItem('loggedInUserPassword', password);
                                     window.localStorage.setItem('loggedInUserrole', "staff");
-                                    navigate("/staff_dashboard/")
+                                    navigate("/staff-chart/")
                                  }
                                 
                                 else if(res.data == 300) {
                                     window.localStorage.setItem('loggedInUsername', username);
                                     window.localStorage.setItem('loggedInUserPassword', password);
                                     window.localStorage.setItem('loggedInUserrole', "student");
-                                    navigate("/student_dashboard/")
+                                    navigate("/student-chart/")
                                  }
                                 else if(res.data=="User Does Not Exist"){
-                                    alert("no")
+                                    setAlertuse( 
+                                        <Alert severity="error">User Does Not Exist .</Alert>
+                                      )
                                 } 
                                 else if(res.data=="Incorrect Password"){
-                                    alert("Incorrect Password")
+                                    setAlertuse( 
+                                        <Alert severity="error">Incorrect Password .</Alert>
+                                      )
                                 } 
 
                               });
    }
 
   return (
-                  
-                    // <Login>
-                    //                     <Render>
-                    //                         {({ fields, buttons, blocks, $$index }) => {
-                    //                           return (
-                    //                             <div>
-                    //                               <header>
-                    //                                 {blocks.logo} {blocks.title}
-                    //                               </header>
-                    //                               <div>
-                    //                                 <label>{fields.username}</label>
-                    //                               </div>
-                    //                               <div>
-                    //                                 <label>{fields.password}</label>
-                    //                               </div>
-                    //                               <div>
-                    //                                 {buttons.submit}
-                    //                                 {buttons.reset}
-                    //                               </div>
-                    //                             </div>
-                    //                           );
-                    //                         }}
-                    //                       </Render>
-                    //                       <Login.Block keyname="logo" tagName="span">
-                    //                         <Logo />
-                    //                       </Login.Block>
-                    //                       <Login.Block keyname="title" tagName="span">
-                    //                         Login
-                    //                       </Login.Block>
-                    //                       <Login.Input keyname="username" placeholder="Please input Username" />
-                    //                       <Login.Input keyname="password" placeholder="please enter password" />
-                    //                       <Login.Button keyname="submit" type="submit" onClick={handleSubmit}>
-                    //                         Submit
-                    //                       </Login.Button>
-                    //                       <Login.Button keyname="reset" type="reset">
-                    //                         Reset
-                    //                       </Login.Button>
-                    //                     </Login>
-                    
+                
+                    <div style={{
+                        background: "linear-gradient(90deg, rgba(35,40,82,1) 25%, rgba(26,34,122,1) 55%, rgba(27,44,94,1) 89%)",
+                       height:"800px"
+                        
+                      }} 
+                    >  
+                   
                     <div class="row">
-                    <div class="colm-logo">
-                      
-                      
-                    </div>
+                    
+                   
                     <div class="colm-form">
                         <div class="form-container">
-                            <input type="text" placeholder="Email address or phone number"  onChange={(e) => setUsername(e.target.value)}></input>
-                            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                            <input type="text" placeholder="Enter Username"  onChange={(e) => setUsername(e.target.value)}></input>
+                            <input type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}></input>
                             <button class="btn-login"  onClick={handleSubmit}>Login</button>
-                            <a href="#">Forgotten password?</a>
+                            
                             <button class="btn-new">Create new Account</button>
                         </div>
-                        <p><a href="#"><b>Create a Page</b></a> for a celebrity, brand or business.</p>
+                      
                     </div>
+                   
+                
+      
                     </div>
-               
-           
-           
+                 
+                    <div style={{width:"50%"}}>
+                  {alertuse}
+                  </div>  
+                   
+                 </div>  
+                  
               
   )
 }

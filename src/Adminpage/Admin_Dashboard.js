@@ -7,8 +7,18 @@ import {
     FaRegChartBar,
     FaCommentAlt,
     FaShoppingBag,
-    FaThList
+    FaThList,
+    
 }from "react-icons/fa";
+import { RiHistoryLine } from "react-icons/ri";
+import { FaRegMessage } from "react-icons/fa6";
+import { FiMessageSquare } from "react-icons/fi";
+import { IoMdNotifications } from "react-icons/io";
+import { ImNotification } from "react-icons/im";
+import { PiStudentFill } from "react-icons/pi";
+import { GiTeacher } from "react-icons/gi";
+import { FaList } from "react-icons/fa6";
+import { MdPlaylistAddCircle } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
 function Admin_Dashboard() {
@@ -23,43 +33,49 @@ function Admin_Dashboard() {
         {
             path:"/coursedetails/",
             name:"Course",
-            icon:<FaUserAlt/>
+            icon:<FaList />
         },
         {
             path:"/staffdetails",
             name:"Staff",
-            icon:<FaRegChartBar/>
+            icon:<GiTeacher />
         },
         {
             path:"/studentdetails",
             name:"Student",
-            icon:<FaCommentAlt/>
+            icon:<PiStudentFill />
         },
         {
             path:"/subjectdetails",
             name:"Subjects",
-            icon:<FaShoppingBag/>
+            icon:<MdPlaylistAddCircle />
         },
         {
             path:"/student_notification/",
             name:"Notification For Students",
-            icon:<FaThList/>
+            icon:<IoMdNotifications />
         },
         {
             path:"/staff_notification/",
             name:"Notification For Staff",
-            icon:<FaThList/>
+            icon:<ImNotification />
         },
         {
             path:"/view_staff_leave",
             name:" Staff Leave",
-            icon:<FaThList/>
+            icon:<FaRegMessage />
         },
         {
             path:"/view_student_leave",
             name:"Students Leave",
-            icon:<FaThList/>
+            icon:<FiMessageSquare />
+        },
+        {
+            path:"/history",
+            name:"History",
+            icon:<RiHistoryLine />
         }
+        
     ]
   return (
     <div>

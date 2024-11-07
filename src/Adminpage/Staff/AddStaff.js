@@ -10,6 +10,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
 function AddStaff() {
         const[staffname,setName]=useState("");
         const[address,setAddress]=useState("");
@@ -21,6 +22,8 @@ function AddStaff() {
         const[subject_options,setSubject_Options] =useState([]) ; 
         const[staff_username,setStaff_Username] =useState("") ; 
         const[staff_password,setStaff_Password] =useState("") ; 
+
+        const[alertuse,setAlertuse]=useState("")
         const navigate=useNavigate() 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -210,46 +213,141 @@ var regfield= <TextField id="outlined-reg"
                     },
                   }}
                 onChange={(e)=>setStaff_Password(e.target.value)} label="Enter Staff Password"></TextField>   
- function submit(e){
-                    e.preventDefault()
-axios.post("http://localhost:8000/adminapp/staffdetail/",
-     {
-       'staff_name':staffname,
-        'address':address,
-        "age":age,
-        "qualification":qualification,
-        "phone":phone ,
-        "staff_registerid" :regno,
-        // "subject"  :subject,
-        "staff_uname":staff_username,
-        "staff_pwd":staff_password
 
-     }               
-)
-.then((res)=>{
- 
-  
-  axios.post("http://localhost:8000/loginapp/register/",
-    {
-      "name" :staffname,
-      "age":age,
-      "address" :address,
-      "phone" :phone,
-      "username":  staff_username,
-      "password": staff_password,
-      "staff_id":regno,
-      "userrole":"staff"  
-      
-}
-)
-.then((res) => {
-  alert("saved")
-  navigate("/staffdetails")   
-                
-              });
-                  
-})
- }
+ function submit(e){
+        e.preventDefault()
+        var testPassed = "false";
+            if(staffname != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Enter Staff Name.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(address != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Address.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(age != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Age .</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(qualification != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Qualification.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(phone != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Phone Number.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(regno != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Register Number.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(staff_username != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Staff UserName.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(staff_password != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter The Staff Password.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+        axios.post("http://localhost:8000/adminapp/staffdetail/",
+            {
+              'staff_name':staffname,
+                'address':address,
+                "age":age,
+                "qualification":qualification,
+                "phone":phone ,
+                "staff_registerid" :regno,
+                // "subject"  :subject,
+                "staff_uname":staff_username,
+                "staff_pwd":staff_password
+
+            }               
+        )
+        .then((res)=>{
+        
+          
+          axios.post("http://localhost:8000/loginapp/register/",
+            {
+              "name" :staffname,
+              "age":age,
+              "address" :address,
+              "phone" :phone,
+              "username":  staff_username,
+              "password": staff_password,
+              "staff_id":regno,
+              "userrole":"staff"  
+              
+        }
+        )
+        .then((res) => {
+          alert("saved")
+          navigate("/staffdetails")   
+                        
+                      });
+                          
+        })
+      }
+        }
                     
               
   return (
@@ -313,6 +411,11 @@ axios.post("http://localhost:8000/adminapp/staffdetail/",
         <br></br>
         <center><button class="btn btn-primary" onClick={submit}>Save</button></center>
         </center>
+
+        <br></br>
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
       </Box>
       {/* </div> */}
       </Box>

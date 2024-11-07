@@ -45,7 +45,7 @@ function Staff_Dashboard() {
   return (
     <div>
          
-    <div style={{width: isOpen ? "200px" : "50px",backgroundColor: " rgb(14,44,51)"}} className="sidebar">
+        <div style={{width: isOpen ? "200px" : "50px", background: " linear-gradient(90deg, rgba(0,6,62,1) 25%, rgba(12,16,51,1) 55%, rgba(28,52,126,1) 89%)",height:"800px"}} className="sidebar">
         <div className="top_section">
             <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
             <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">

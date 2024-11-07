@@ -21,6 +21,7 @@ function NotificationRead() {
 
   function deleteRow(rowid){
     setOpen("true");
+    
     axios
     
             .put(`http://localhost:8000/adminapp/update_staff_notification/${rowid.id}`,{
@@ -52,16 +53,16 @@ function NotificationRead() {
 
 
   const columns: GridColDef[] = [
-                      { field: 'id', fontSize: '18px', headerName: <b>ID</b>, headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 90  },
-                      { field: 'name', headerName: <b>Name</b>,headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 200 },
-                      { field: 'registerno', headerName: <b>Register Number</b> , headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 210 },
-                      { field: 'course', headerName: <b>Course</b> , headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 150 },
+                      { field: 'id', fontSize: '18px', headerName: <b>ID</b>, headerClassName: 'super-app-theme--header', width: 90  },
+                      { field: 'name', headerName: <b>Name</b>,headerClassName: 'super-app-theme--header', width: 200 },
+                      { field: 'registerno', headerName: <b>Register Number</b> , headerClassName: 'super-app-theme--header', width: 210 },
+                      { field: 'course', headerName: <b>Course</b> , headerClassName: 'super-app-theme--header', width: 250 },
                                      
                       // { field: 'date_on', headerName: 'Date On', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 190 },
                       // { field: 'date_to', headerName: 'Date To', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 180 },
-                      { field: 'message', headerName: <b>message</b> , headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 140},
-                      { field: 'status', headerName: <b>Status</b> , headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 270},
-                      { field: 'actions', headerName: <b>Actions</b> , headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 200,
+                      { field: 'message', headerName: <b>message</b> , headerClassName: 'super-app-theme--header', width: 280},
+                      { field: 'status', headerName: <b>Status</b> , headerClassName: 'super-app-theme--header', width: 280},
+                      { field: 'actions', headerName: <b>Actions</b> , headerClassName: 'super-app-theme--header', width: 200,
                       renderCell: (params) => {
                         if(params.row.status === "Sended" ) {
                             return <div>
@@ -158,13 +159,17 @@ var Name=window.localStorage.getItem("Name")
                     //                   };
                                     
   return (
-            <div>
+    <div style={{
+      background: "linear-gradient(90deg, rgba(35,40,82,1) 25%, rgba(26,34,122,1) 55%, rgba(27,44,94,1) 89%)",
+      
+    }} 
+>
                 <Box sx={{ display: 'flex' }}>
                                                     
                     <Staff_Dashboard/>
                       <Box component="main2" sx={{ flexGrow: 4, p: 1 }}>
                           <Navbarpage/>
-                          <br/>                           
+                                                   
                        
                                        {/* <table  style={{ border: '3px solid black', width: '70%' }}>
                                                      
@@ -219,16 +224,21 @@ var Name=window.localStorage.getItem("Name")
                                                      </table> */}
 
   
-      <div style={{ height: 500, width: '100%' }}>
+      <div style={{ height: 500, width: '98%' }}>
 
           <DataGrid sx={{
-            boxShadow: 6,
-            border: 4,
-            borderColor: 'rgb(14,44,51)',
-            '& .MuiDataGrid-cell:hover': {
-              color: 'primary.main',
-            },
-          }} rows={filterresult} columns={columns} getRowId={(row) => row.id}  />
+                                boxShadow: 6,
+                                border: 4,
+                                borderColor: 'black',
+                                '& .MuiDataGrid-cell:hover': {
+                                  color: 'primary.main',
+                                },
+                                '& .super-app-theme--header': {
+                                  backgroundColor: ' #1b0720',
+                                },
+                                color:"white",
+                                background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)"
+                }} rows={filterresult} columns={columns} getRowId={(row) => row.id}   />
               
           </div>            
         </Box>

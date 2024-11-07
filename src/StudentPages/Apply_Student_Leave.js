@@ -43,12 +43,139 @@ function Apply_Student_Leave() {
   useEffect(()=>{
               getStaffDetails()
             },[])
-var regnofield=  <TextField id="outlined-basic" value={regno} onChange={ (e)=>setRegno(e.target.value)}   label="Enter Register Number"></TextField> 
-var namefield=  <TextField id="outlined-basic" value={name} onChange={ (e)=>setName(e.target.value)}   label="Enter Name"></TextField> 
-var coursefield=  <TextField id="outlined-basic" value={course} onChange={ (e)=>setCourse(e.target.value)}  label="Enter Subject"></TextField>
-var messagefield=  <TextField id="outlined-basic" onChange={ (e)=>setMessage(e.target.value)}  label="Enter Message"></TextField> 
-var datefield=  <TextField id="outlined-basic" type="date" onChange={ (e)=>setDate(e.target.value)} style={{width:'50%'}}   ></TextField> 
-var datetofield=  <TextField id="outlined-basic" type="date" onChange={ (e)=>setDateto(e.target.value)} style={{width:'50%'}}   ></TextField>       
+var regnofield=  <TextField id="outlined-basic" 
+                  value={regno} onChange={ (e)=>setRegno(e.target.value)} 
+                    label="Enter Register Number"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#FFFFF0",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#CD853F	",
+                          borderWidth: "2px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "#FFA500",
+                        fontWeight: "bold",
+                      },
+                    }} 
+                    ></TextField> 
+var namefield=  <TextField id="outlined-basic" 
+                  value={name} 
+                  onChange={ (e)=>setName(e.target.value)}   
+                  label="Enter Name"
+                  sx={{
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }} ></TextField> 
+var coursefield=  <TextField id="outlined-basic" 
+                    value={course} 
+                    onChange={ (e)=>setCourse(e.target.value)}
+                    label="Enter Subject"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#FFFFF0",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#CD853F	",
+                          borderWidth: "2px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "#FFA500",
+                        fontWeight: "bold",
+                      },
+                    }} 
+                      ></TextField>
+var messagefield=  <TextField id="outlined-basic" 
+                    onChange={ (e)=>setMessage(e.target.value)} 
+                    label="Enter Message"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#FFFFF0",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#CD853F	",
+                          borderWidth: "2px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "#FFA500",
+                        fontWeight: "bold",
+                      },
+                    }} 
+                    ></TextField> 
+var datefield=  <TextField id="outlined-basic" 
+                  type="date" 
+                  onChange={ (e)=>setDate(e.target.value)}
+                  sx={{
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }} 
+                  style={{width:'50%'}}   ></TextField> 
+var datetofield=  <TextField id="outlined-basic" 
+                    type="date" 
+                    onChange={ (e)=>setDateto(e.target.value)} 
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#FFFFF0",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#CD853F	",
+                          borderWidth: "2px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "#FFA500",
+                        fontWeight: "bold",
+                      },
+                    }} 
+                    style={{width:'50%'}}   ></TextField>       
 const handleSubmit =(e)=>{
                             e.preventDefault()
                                                   
@@ -60,7 +187,7 @@ const handleSubmit =(e)=>{
                                             "message":message,
                                             "date_on":date ,
                                             "date_to":date_to,
-                                            "status":"sended"           
+                                            "status":"Pending"           
                                     })
                                       .then(()=>{
                                                     navigate("/get-student-leave/")
@@ -109,7 +236,9 @@ const handleSubmit =(e)=>{
               </div>
             </div> */}
 <br></br>   <br></br>  <br></br>          
-<center>
+<center style={{background: "linear-gradient(90deg, rgba(16,18,54,1) 25%, rgba(26,37,62,1) 55%, rgba(8,11,69,1) 84%)"}}>
+      <h4 ><center><h4 style={{color:"#FFE4C4	"}}><font face="times new roman" size="6">Apply For Leave </font></h4></center></h4>  
+      <br></br>             
 <Grid container spacing={2}>
       <Grid item xs={4}>
       { regnofield}
@@ -128,11 +257,19 @@ const handleSubmit =(e)=>{
       {datefield}
       </Grid>
       <Grid item xs={4}>
-      {datetofield}
+      {datetofield}                           
       </Grid>
 
       <Grid item xs={4}>
       {messagefield}
+      </Grid>
+
+      <Grid item xs={4}>
+    
+      </Grid>
+
+      <Grid item xs={4}>
+     
       </Grid>
 
      
@@ -140,7 +277,6 @@ const handleSubmit =(e)=>{
         <br></br>
         <center><button class="btn btn-primary" onClick={handleSubmit}>Save</button></center>
         </center>
-  
 
                     
                     

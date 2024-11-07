@@ -50,14 +50,14 @@ var NAME=window.localStorage.getItem('NAME')
                                         
                    
                     const columns = [
-                                        { field: 'id', headerName:<b>ID</b> , width: 90 },
-                                        { field: 'name', headerName: <b>Name</b>, width: 230 },
-                                        { field: 'regno', headerName: <b>Register Number</b>, width: 190 },
-                                        { field: 'course', headerName: <b>Course</b> , width: 210 },
-                                        { field: 'subject', headerName:<b>Subject</b> , width: 190 },
-                                        { field: 'date', headerName:<b>Date</b> , width: 190 },
-                                        { field: 'mark', headerName: <b>Mark</b> , width: 180 },
-                                        { field: 'grade', headerName: <b>Grade</b> , width: 400,}
+                                        { field: 'id', headerName:<b>ID</b> , headerClassName: 'super-app-theme--header',width: 90 },
+                                        { field: 'name', headerName: <b>Name</b>, headerClassName: 'super-app-theme--header', width: 230 },
+                                        { field: 'regno', headerName: <b>Register Number</b>, headerClassName: 'super-app-theme--header', width: 190 },
+                                        { field: 'course', headerName: <b>Course</b> , headerClassName: 'super-app-theme--header', width: 210 },
+                                        { field: 'subject', headerName:<b>Subject</b> , headerClassName: 'super-app-theme--header', width: 190 },
+                                        { field: 'date', headerName:<b>Date</b> , headerClassName: 'super-app-theme--header', width: 190 },
+                                        { field: 'mark', headerName: <b>Mark</b> , headerClassName: 'super-app-theme--header', width: 180 },
+                                        { field: 'grade', headerName: <b>Grade</b> , headerClassName: 'super-app-theme--header', width: 400,}
                      ];
                                       
                     return (
@@ -72,7 +72,21 @@ var NAME=window.localStorage.getItem('NAME')
                                     
                                         <div style={{ height: 600, width: '100%' }}>
                                              
-                                          <DataGrid rows={filterresult} columns={columns} getRowId={(row) => row.id}  />
+                                          <DataGrid
+                                           sx={{
+                                            boxShadow: 6,
+                                            border: 4,
+                                            borderColor: 'black',
+                                            '& .MuiDataGrid-cell:hover': {
+                                              color: 'primary.main',
+                                            },
+                                            '& .super-app-theme--header': {
+                                              backgroundColor: ' #1b0720',
+                                            },
+                                            color:"white",
+                                            background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)"
+                            }}
+                                           rows={filterresult} columns={columns} getRowId={(row) => row.id}  />
                                          
                                         </div>
                                         </Box>

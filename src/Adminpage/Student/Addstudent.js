@@ -8,6 +8,7 @@ import Navbarpage from '../Course/Navbarpage';
 import Admin_Dashboard from '../Admin_Dashboard';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 function Addstudent() {
                     const[studentname,setStudentName]=useState("");
                     const[address,setAddress]=useState("");
@@ -20,9 +21,12 @@ function Addstudent() {
                     const[register_no,setRegister_no]=useState("")
                     const[student_username,setStudent_Username] =useState("") ; 
                     const[student_password,setStudent_Password] =useState("") ; 
+                    const[alertuse,setAlertuse]=useState("")
                     const navigate=useNavigate() 
                     const {operation}=useParams()
                     const {id}=useParams()
+
+                    const[p_use,setP_use]=useState("")
 
   function getstudentdata(){
         axios.get("http://localhost:8000/adminapp/studentindividual/"+id) 
@@ -37,6 +41,8 @@ function Addstudent() {
             setRegister_no(res.data[0].registerno)
             setStudent_Username(res.data[0].student_uname)
             setStudent_Password(res.data[0].student_pwd)
+            getuniqueCoursedetails(res.data[0].course)
+
             
                
         })           
@@ -48,8 +54,21 @@ function Addstudent() {
      setCourse(res.data) 
     })
   }
+  // this function is an example of use param to fetch a data .not use this function in this project
+  function getuniqueCoursedetails(coursrparama){
+    axios.get("http://localhost:8000/adminapp/coursedetail/")
+    .then((res)=>{
+    res.data.map(g=>{
+      // alert(coursrparama.toLowerCase())
+      if(g.course_name == coursrparama.toLowerCase()){
+      
+        setP_use(g.fees)
+      }
+    })
+    })
+  }
   const a = course.map(option =>({
-    label:option.course_name.toUpperCase()
+    label:option.course_name
   }))
 useEffect(() => {
                     if(operation === 'edit') {
@@ -526,6 +545,123 @@ const handleChange=(event,value)=>{
    
    const Handlesubmit = (e) => {
     e.preventDefault()
+    var testPassed = "false";
+            if(studentname != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Enter Student Name.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(address != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Address.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(age != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Age .</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(qualification != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Qualification.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(phone != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Phone Number.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(register_no != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Register Number.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(grade != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Grade.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(courselabel != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Student Course.</Alert>
+              )
+            }
+          }
+
+
+          if(testPassed == "true"){
+            if(student_username != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Student UserName.</Alert>
+              )
+            }
+          }
+
+          if(testPassed == "true"){
+            if(student_password != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Student Password.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
     if(operation =="create"){
              axios.post("http://localhost:8000/adminapp/studentdetail/",
                     {
@@ -596,6 +732,7 @@ const handleChange=(event,value)=>{
                                 });       
                     })
     }
+  }
 }           
  
   return (
@@ -672,9 +809,14 @@ const handleChange=(event,value)=>{
       </Grid>
       
     </Grid>
+
     <center><button class="btn btn-primary" onClick={Handlesubmit}>Save</button></center>
     </center>
-     
+    <br></br>
+    <h3 style={{color:"white"}} >cvcv {p_use}</h3> 
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
       </Box>
       </Box>
     </div>

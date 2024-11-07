@@ -19,6 +19,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
 function Attendance() {
    const[data,setData]=useState([])
    const[search,setSearch]=useState("")  
@@ -34,7 +35,7 @@ function Attendance() {
   const[subject_label,setSubject_label]=useState("")
    const [isChecked, setIsChecked] = useState(false);
    const[attendancedata,setAttdata]=useState("")
-
+   const[alertuse,setAlertuse]=useState("")
    const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
     ...theme.typography.body2,
@@ -258,8 +259,40 @@ var coursefield =
 
      
   const handleSubmit=(row)=>{
-    
-      
+    var testPassed = "false";
+            if(course_lable != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Select Course.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(today_date != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Date.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(subject != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Subject .</Alert>
+              )
+            }
+          }
+    if(testPassed == "true"){
       axios.post("http://localhost:8000/staffapp/all_attendance/",{
     
         'course':course_lable,
@@ -279,11 +312,45 @@ var coursefield =
             alert("attendance saved")
           }
       })
+    }
       }
 
  const AbsenthandleSubmit=(row)=>{
  
-  // if(subject==10){
+  var testPassed = "false";
+            if(course_lable != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Select Course.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(today_date != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Date.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(subject != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Subject .</Alert>
+              )
+            }
+          }
+    if(testPassed == "true"){
       axios.post("http://localhost:8000/staffapp/all_attendance/",{
     
         'course':course_lable,
@@ -308,6 +375,7 @@ var coursefield =
 
 
      })
+    }
     }
 // else if(subject==20){
 
@@ -479,7 +547,7 @@ var coursefield =
 function Deleterow(row){
 
 
-  axios.delete(`http://localhost:8000/staffapp/deleteattendance/${row.registerno}`)
+  axios.delete(`http://localhost:8000/staffapp/delete_all_attendance/${row.registerno}`)
   .then((res)=>{
       window.location.reload()
   })
@@ -492,19 +560,16 @@ function Deleterow(row){
       
     }} 
 >
-        <Box sx={{ display: 'flex' }}>
-                   
-                   <Staff_Dashboard/>
-                   
-                   
-                   <Box component="main2" sx={{ flexGrow: 4, p: 1 }}>
-                
-                   <Navbarpage/>
+    <Box sx={{ display: 'flex' }}>
+        <Staff_Dashboard/> 
+          <Box component="main2" sx={{ flexGrow: 4, p: 1 }}>
+            <Navbarpage/>
 <div class="container">
-    <Box sx={{ flexGrow: 1 ,  background:"linear-gradient(90deg, rgba(16,18,54,1) 25%, rgba(26,37,62,1) 55%, rgba(8,11,69,1) 84%)"}}>
+    <Box sx={{ flexGrow: 1 ,background:"linear-gradient(90deg, rgba(16,18,54,1) 25%, rgba(26,37,62,1) 55%, rgba(8,11,69,1) 84%)"}}>
+    <div class="container">
       <Grid container spacing={3}>
         <Grid item xs={4}>
-         {coursefield}
+       {coursefield}
         </Grid>
         <Grid item xs={3}>
         {datefield}
@@ -512,11 +577,9 @@ function Deleterow(row){
         <Grid item xs={4}>
          {subjectfield}
         </Grid>
-        <Grid item xs={4}>
-         
-        </Grid>
-      
       </Grid>
+      </div>
+      <br/>
     </Box>
     <br/>
                   
@@ -573,7 +636,7 @@ function Deleterow(row){
 }
                     </tbody>
                     </table> */}
-                     <div style={{ height: 500, width: '96%' }}>
+      <div style={{ height: 500, width: '96%' }}>
                      <DataGrid  sx={{
         boxShadow: 6,
         border: 4,
@@ -589,11 +652,13 @@ function Deleterow(row){
 }}  rows={data} columns={columns} getRowId={(row) => row.id}  />
                      </div>
                      </div>
-                  
+                     <br></br>
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
                     </Box>
                     </Box>
     </div>
   )
 }
-
 export default Attendance

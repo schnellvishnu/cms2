@@ -78,14 +78,168 @@ const subjectoption = subject.map(options => ({
                         getResultEditdata()               
                     },[])                  
                               
-                    var namefield=  <TextField id="outlined-basic" onChange={ (e)=>setName(e.target.value)} value={name}  label="Enter Name"></TextField> 
-                    var coursefield=  <TextField id="outlined-basic" onChange={ (e)=>setCourse(e.target.value)} value={course} label="Enter Course"></TextField> 
-                    var subjectfield=  <TextField id="outlined-basic" onChange={ (e)=>setSubject(e.target.value)} value={subject} label="Enter Subject"></TextField>
-                    var gradefield=  <TextField id="outlined-basic" onChange={ (e)=>setGrade(e.target.value)} value={grade} label="Enter Grade"></TextField> 
-                    var markfield=  <TextField id="outlined-basic" onChange={ (e)=>setMark(e.target.value)} value={mark} label="Enter Mark"></TextField>  
-                    var datefield=  <TextField id="outlined-basic" type="date" onChange={ (e)=>setDate(e.target.value)}  value={date}></TextField> 
-                    var statusfield=  <TextField id="outlined-status"   onChange={ (e)=>setStatus(e.target.value)} value={status}  ></TextField>                   
-                    const handleSubmit =(e)=>{
+var namefield=  <TextField id="outlined-basic" 
+                onChange={ (e)=>setName(e.target.value)}
+                 value={name}  label="Enter Name"
+                 sx={{
+                            
+                  // Root class for the input field
+                  "& .MuiOutlinedInput-root": {
+                    color: "#FFFFF0",
+                    fontFamily: "Arial",
+                    fontWeight: "bold",
+                    // Class for the border around the input field
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#CD853F	",
+                      borderWidth: "2px",
+                    },
+                  },
+                  // Class for the label of the input field
+                  "& .MuiInputLabel-outlined": {
+                    color: "#FFA500",
+                    fontWeight: "bold",
+                  },
+                }}
+                 ></TextField> 
+var coursefield=  <TextField id="outlined-basic" 
+                  onChange={ (e)=>setCourse(e.target.value)}
+                   value={course} label="Enter Course"
+                   sx={{
+                            
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }}
+                   ></TextField> 
+var subjectfield=  <TextField id="outlined-basic" 
+                    onChange={ (e)=>setSubject(e.target.value)} 
+                    value={subject} label="Enter Subject"
+                    sx={{
+                            
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#FFFFF0",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#CD853F	",
+                          borderWidth: "2px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "#FFA500",
+                        fontWeight: "bold",
+                      },
+                    }}
+                    ></TextField>
+var gradefield=  <TextField id="outlined-basic" 
+                  onChange={ (e)=>setGrade(e.target.value)} 
+                  value={grade} label="Enter Grade"
+                  sx={{
+                            
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }}
+                  ></TextField> 
+var markfield=  <TextField id="outlined-basic" 
+                 onChange={ (e)=>setMark(e.target.value)} 
+                 value={mark} label="Enter Mark"
+                 sx={{
+                            
+                  // Root class for the input field
+                  "& .MuiOutlinedInput-root": {
+                    color: "#FFFFF0",
+                    fontFamily: "Arial",
+                    fontWeight: "bold",
+                    // Class for the border around the input field
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#CD853F	",
+                      borderWidth: "2px",
+                    },
+                  },
+                  // Class for the label of the input field
+                  "& .MuiInputLabel-outlined": {
+                    color: "#FFA500",
+                    fontWeight: "bold",
+                  },
+                }}
+                 ></TextField>  
+var datefield=  <TextField id="outlined-basic" 
+                  type="date" onChange={ (e)=>setDate(e.target.value)} 
+                  value={date}
+                  sx={{
+                    width:"240px",       
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }}
+                  ></TextField> 
+var statusfield=  <TextField id="outlined-status"   
+                  onChange={ (e)=>setStatus(e.target.value)} 
+                  value={status}
+                  sx={{
+                            
+                    // Root class for the input field
+                    "& .MuiOutlinedInput-root": {
+                      color: "#FFFFF0",
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      // Class for the border around the input field
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#CD853F	",
+                        borderWidth: "2px",
+                      },
+                    },
+                    // Class for the label of the input field
+                    "& .MuiInputLabel-outlined": {
+                      color: "#FFA500",
+                      fontWeight: "bold",
+                    },
+                  }}  
+                  ></TextField>                   
+const handleSubmit =(e)=>{
                           e.preventDefault()
                           alert(reg_label)
                           axios.put(`http://localhost:8000/staffapp/updateresult/${id}`,{
@@ -111,69 +265,116 @@ const subjectoption = subject.map(options => ({
                     const isMobile = useMediaQuery({ maxWidth: 767 });
                                     
     return (
-                                        <div>
-                                        <br/>
-                          <Box sx={{ display: 'flex' }}>
-                                       
-                                       <Staff_Dashboard/>
-                                       <Box component="main2" sx={{ flexGrow: 4, p: 1 }}>
-                                       <Navbarpage/>               
-                         
-<center>
-<Box sx={{ flexGrow: 1 }}>
-                          <Grid container spacing={2}>
-      <Grid item xs={4}>
-      <Autocomplete
-                                                            disablePortal
-                                                            value={reg_label}
-                                                            options={regoption}
-                                                            onInputChange={handleReg}
-                                                            sx={{ width: 300 }}
-                                                            renderInput={(params) => <TextField {...params} label="Select Subject" />}
-                                                            />
-      </Grid>
-      <Grid item xs={4}>
-      <Autocomplete
-                                                            disablePortal
-                                                            options={subjectoption}
-                                                            value={subject_label}
-                                                            onInputChange={handleChange}
-                                                            sx={{ width: 300 }}
-                                                            renderInput={(params) => <TextField {...params} label="Select Subject" />}
-                                                            />
-      </Grid>
-
-      <Grid item xs={4}>
-      {namefield}
-      </Grid>
+      <div style={{
+        background: "linear-gradient(90deg, rgba(35,40,82,1) 25%, rgba(26,34,122,1) 55%, rgba(27,44,94,1) 89%)",
+        
+      }} 
+  >
+                 
+   <Box sx={{ display: 'flex' }}>
+        <Staff_Dashboard/>
+             <Box component="main2" sx={{ flexGrow: 4, p: 1 }}>
+                 <Navbarpage/>               
+                 
+             <br></br> <br></br> <br></br>
+<center style={{background: "linear-gradient(90deg, rgba(16,18,54,1) 25%, rgba(26,37,62,1) 55%, rgba(8,11,69,1) 84%)"}}>
+   <Grid container spacing={3}>
+    <Grid item xs={4}>
+  
+    <Autocomplete
+                       disablePortal
+                      
+                        value={reg_label}
+                        options={regoption}
+                        onInputChange={handleReg}
+                       sx={{
+                          
+                            // Root class for the input field
+                            "& .MuiOutlinedInput-root": {
+                              color: "#FFFFF0",
+                              fontFamily: "Arial",
+                              fontWeight: "bold",
+                              // Class for the border around the input field
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#CD853F	",
+                                borderWidth: "2px",
+                              },
+                            },
+                            // Class for the label of the input field
+                            "& .MuiInputLabel-outlined": {
+                              color: "#FFA500",
+                              fontWeight: "bold",
+                            },
+                          }}
+                       renderInput={(params) => <TextField {...params} label="Select Register Number"  />}
+                  />
+                
     </Grid>
-     <br></br>
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
-      {coursefield}
-      </Grid>
-      <Grid item xs={4}>
-      {markfield}
-      </Grid>
-
-      <Grid item xs={4}>
-      {gradefield}
-      </Grid>
-
-      <Grid item xs={4}>
-      {datefield} 
-      </Grid>
-      <Grid item xs={4}>
-      {statusfield} 
-      </Grid>
+    <Grid item xs={4}>
+    {markfield}
     </Grid>
+
+    <Grid item xs={4}>
+    {coursefield}
+    </Grid>
+  </Grid>
+   <br></br>
+  <Grid container spacing={2}>
+   
+    <Grid item xs={4}>
+    <Autocomplete
+                       disablePortal
+                       options={subjectoption}
+                       value={subject_label}
+                       onInputChange={handleChange}
+                       sx={{
+                            
+                            // Root class for the input field
+                            "& .MuiOutlinedInput-root": {
+                              color: "#FFFFF0",
+                              fontFamily: "Arial",
+                              fontWeight: "bold",
+                              // Class for the border around the input field
+                              "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#CD853F	",
+                                borderWidth: "2px",
+                              },
+                            },
+                            // Class for the label of the input field
+                            "& .MuiInputLabel-outlined": {
+                              color: "#FFA500",
+                              fontWeight: "bold",
+                            },
+                          }}
+                       renderInput={(params) => <TextField {...params} label="Select Subject" />}
+                  />
+    
+    </Grid>
+    <Grid item xs={4}>
+    {namefield}
+    </Grid>
+    <Grid item xs={4}>
+    {gradefield}
+    </Grid>
+    <Grid item xs={4}>
+   
+    </Grid>
+    <Grid item xs={4}>
+    {statusfield} 
+    </Grid>
+    <Grid item xs={4}>
+    {datefield} 
+    </Grid>
+  </Grid>
+  <br></br>
+  <center><button class="btn btn-primary" onClick={handleSubmit}>Save</button></center>
+</center>
+ 
+
     </Box>
-    </center>
-                          <center><button class="btn btn-primary" onClick={handleSubmit}>Save</button></center>
-                          </Box>
-                          </Box>
-                        </div>
-                      )
+    </Box>
+  </div>
+    )
 }
 
 export default EditResult

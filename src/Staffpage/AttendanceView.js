@@ -24,13 +24,22 @@ function AttendanceView() {
   }, []);
 
   const columns = [
-    { field: 'id', headerName: 'ID', headerClassName: 'super-app-theme--header', width: 90 },
+    { field: 'id', headerName: 'ID', headerClassName: 'super-app-theme--header', width: 130 },
     { field: 'name', headerName: 'Name', headerClassName: 'super-app-theme--header', width: 230 },
     { field: 'regno', headerName: 'Register Number', headerClassName: 'super-app-theme--header', width: 190 },
     { field: 'course', headerName: 'Course', headerClassName: 'super-app-theme--header', width: 210 },
-    { field: 'subject', headerName: 'Subject', headerClassName: 'super-app-theme--header', width: 190 },
-    { field: 'date', headerName: 'Date', headerClassName: 'super-app-theme--header', width: 190 },
-    { field: 'status', headerName: 'Status', headerClassName: 'super-app-theme--header', width: 180 },
+    { field: 'subject', headerName: 'Subject', headerClassName: 'super-app-theme--header', width: 220 },
+    { field: 'date', headerName: 'Date', headerClassName: 'super-app-theme--header', width: 230 },
+    { field: 'status', headerName: 'Status', headerClassName: 'super-app-theme--header', width: 210 },
+    { field: 'actions', headerName:<b>Actions</b> , headerClassName: 'super-app-theme--header', width: 400,
+      renderCell: (params) => {
+                                          
+       return <div>
+               <a class="btn btn-success" href={`/updateattendance/${params.row.id}/`}>Edit</a> 
+             </div>
+     }
+
+   },
     // Add more columns as needed
   ];
   const createpage=()=>navigate("/attendance/")    
@@ -49,8 +58,8 @@ function AttendanceView() {
  
     <Navbarpage/>
 
-    <div style={{ height: 600, width: '90%' }}>
-          <button class="btn btn-primary" onClick={createpage}>Create</button>
+    <div style={{ height: 600, width: '75%' }}>
+          <button class="btn btn-primary" onClick={createpage}>Take Attendance</button>
       <DataGrid
       sx={{
         boxShadow: 6,

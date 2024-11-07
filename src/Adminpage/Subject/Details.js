@@ -45,8 +45,8 @@ const handleChangeRowsPerPage = (event) => {
   setPage(0);
 };     
   return (
-                    <div>
-                    <Box sx={{ display: 'flex' }}>
+            <div>
+                  <Box sx={{ display: 'flex' }}>
                                 
                                 <Admin_Dashboard/>
                                 
@@ -74,7 +74,7 @@ const handleChangeRowsPerPage = (event) => {
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
             <TableContainer sx={{
                                
-                                background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)",
+                                 background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)",
                                 maxHeight: 480
                 }}>
               <Table stickyHeader aria-label="sticky table">

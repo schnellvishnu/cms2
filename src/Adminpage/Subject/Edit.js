@@ -102,7 +102,7 @@ const t2 = stafflabel.map(option => ({
                    }}
                     ></TextField> 
    
-   var datefield=<input type="date" onChange={(e)=>setDate(e.target.value)}></input> 
+  //  var datefield=<input type="date" onChange={(e)=>setDate(e.target.value)}></input> 
 
    function submit(e){
                     e.preventDefault()
@@ -202,7 +202,7 @@ const t2 = stafflabel.map(option => ({
      <br></br>
     <Grid container spacing={2}>
       <Grid item xs={4}>
-      {datefield}
+      {/* {datefield} */}
       </Grid>
       <Grid item xs={4}>
      

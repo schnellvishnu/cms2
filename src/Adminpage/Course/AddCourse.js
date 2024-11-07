@@ -8,43 +8,92 @@ import Navbarpage from './Navbarpage';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 function AddCourse() {
-                    const [fees,setFees]=useState("");    
-                    const [cname,setCname]=useState("");  
-                    const [description,setDescription]=useState("");  
-                    const [year,setYear]=useState(""); 
+    const [fees,setFees]=useState("");    
+    const [cname,setCname]=useState("");  
+    const [description,setDescription]=useState("");  
+    const [year,setYear]=useState(""); 
+    const[alertuse,setAlertuse]=useState("")
                    
-                    const navigate = useNavigate(); 
-                    const Item = styled(Paper)(({ theme }) => ({
-                      backgroundColor: '#fff',
-                      ...theme.typography.body2,
-                      padding: theme.spacing(2),
-                      textAlign: 'center',
-                      color: theme.palette.text.secondary,
-                      ...theme.applyStyles('dark', {
-                        backgroundColor: '#1A2027',
-                      }),
-                    }));  
+    const navigate = useNavigate(); 
+    const Item = styled(Paper)(({ theme }) => ({
+                backgroundColor: '#fff',
+                ...theme.typography.body2,
+                padding: theme.spacing(2),
+                textAlign: 'center',
+                color: theme.palette.text.secondary,
+                ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+              }),
+          }));  
 
-                    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
                       
-                                  e.preventDefault();
-                                  // alert("oooooooooo")
-                                        axios
-                                        .post("http://localhost:8000/adminapp/coursedetail/",
-                                           {
-                                            "course_name":cname,
-                                            "fees":fees,
-                                            "year":year,
-                                            "description":description,
-                                          
-                                           }                
-                                         )
-                                        .then(() => {
-                                          navigate("/coursedetails/");
-                                        });               
+            e.preventDefault();
+            var testPassed = "false";
+            if(cname != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Enter The Couse Name.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(fees != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter The Fees.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(year != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter The Year.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(description != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed =" false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter The Description.</Alert>
+              )
+            }
+          }
+            if(testPassed == "true"){
 
-                    }
+                                
+            axios
+                .post("http://localhost:8000/adminapp/coursedetail/",
+                    {
+                        "course_name":cname,
+                        "fees":fees,
+                        "year":year,
+                        "description":description,
+                    }                
+                  )
+                  .then(() => {
+                                navigate("/coursedetails/");
+                        });               
+                      }
+                      
+          }
   return (
     <div  style={{
       background: "linear-gradient(90deg, rgba(4,6,22,1) 25%, rgba(10,11,22,1) 55%, rgba(29,40,73,1) 89%)",
@@ -165,6 +214,10 @@ function AddCourse() {
       
     
       <center><button class ="btn btn-success" onClick={handleSubmit}>Save</button></center>
+      <br></br>
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
      
    
         <br></br>

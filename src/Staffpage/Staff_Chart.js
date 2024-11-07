@@ -205,9 +205,9 @@ const data1 = [
     
         <Grid size={5}>
         
-          <Item>
+          
          
-     <div  id="bar">
+     {/* <div  id="bar">
      <div class="card" style={{backgroundColor:"#FFB6C1"}}>
 
 <div class="card-body">
@@ -218,8 +218,8 @@ const data1 = [
 </div>
          
     
-     </div>
-          </Item>
+     </div> */}
+          
         </Grid>
         
       </Grid>

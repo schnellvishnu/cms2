@@ -6,9 +6,11 @@ import Navbarpage from '../Adminpage/Course/Navbarpage'
 import Student_Dashboard from './Student_Dashboard';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-import { PieChart } from 'react-minimal-pie-chart';
+// import { PieChart } from 'react-minimal-pie-chart';
+import { PieChart } from '@mui/x-charts/PieChart';
 import { Card, CardContent, Typography } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart } from '@mui/x-charts/BarChart';
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
 import Paper from '@mui/material/Paper';
@@ -158,8 +160,8 @@ var absentfield=<input type="textbox" value={filtetfail_absent_count.length}></i
 
 
 const datapie = [
-                      { title: 'Pass Subjects', value: filterresult.length, color: '#008000' },
-                      { title: 'Failed Subjects', value: filtetfail_count.length, color: '#FF0000' },
+                      { label: 'Pass Subjects', value: filterresult.length, color: '#008000' },
+                      {label: 'Failed Subjects', value: filtetfail_count.length, color: '#FF0000' },
                      
                     ];
 
@@ -172,7 +174,21 @@ const barchart_data = [
                          { name: 'CHEMISTRY', Present: Chemistry_attendance_presentcount.length, Absent:Chemistry_attendance_absentcount.length,  },
                          { name: 'HISTORY', Present: history_attendance_presentcount.length, Absent: history_attendance_absentcount.length,  },
                          { name: 'ACCOUNTANCY', Present: accountcy_attendance_presentcount.length, Absent: accountcy_attendance_absentcount.length,  },
-                       ];                 
+                       ];
+     const xLabels = [
+                         'MALAYALAM',
+                         'ENGLISH',
+                         'MATHS',
+                         'PHYSICS',
+                         'CHEMISTRY',
+                         'HISTORY',
+                         'ACCOUNTANCY',
+                       ];                        
+const PresentData = [malayalam_attendance_presentcount.length, english_attendance_presentcount.length, maths_attendance_presentcount.length, physics_attendance_presentcount.length, 
+               Chemistry_attendance_presentcount.length, history_attendance_presentcount.length, accountcy_attendance_presentcount.length];
+
+const AbsentData = [malayalam_attendance_absentcount.length, english_attendance_presentcount.length, malayalam_attendance_absentcount.length, physics_attendance_absentcount.length, 
+               Chemistry_attendance_absentcount.length, history_attendance_absentcount.length,accountcy_attendance_absentcount.length];                                      
 const Item = styled(Paper)(({ theme }) => ({
                          backgroundColor: '#fff',
                          ...theme.typography.body2,
@@ -189,53 +205,60 @@ const Item = styled(Paper)(({ theme }) => ({
          <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={4}>
         <Grid size="grow">
-          <Item>
+        
           <div class="card" style={{backgroundColor:"#3CB371"}}>
 
   <div class="card-body">
-  <h5 class="card-title">Total Pass Subjects</h5>
-   <h3> <b class="card-text">{filterresult.length}</b></h3>
+  <center><h5 class="card-title">Total Pass Subjects</h5></center>
+  <center><h3> <b class="card-text">{filterresult.length}</b></h3></center>
+  
+   
    
   </div>
 </div>
-          </Item>
+         
         </Grid>
         <Grid size="grow">
-          <Item>
+         
           <div class="card" style={{backgroundColor:"#20B2AA"}}>
 
 <div class="card-body">
-<h5 class="card-title">Total Failed Subject</h5>
-<h3> <b class="card-text">{filtetfail_count.length}</b></h3>
+<center><h5 class="card-title">Total Failed Subject</h5></center>
+<center><h3> <b class="card-text">{filtetfail_count.length}</b></h3></center>
+
+
  
 </div>
 </div> 
 
-          </Item>
+          
         </Grid>
         <Grid size="grow">
-          <Item>
+          
           <div class="card" style={{backgroundColor:"#6A5ACD"}}>
 
 <div class="card-body">
-<h5 class="card-title">Total Attendance Present</h5>
-  <h3><b class="card-text">{filtetfail_present_count.length}</b></h3>
+     <center><h5 class="card-title">Total Attendance Present</h5></center>
+<center> <h3><b class="card-text">{filtetfail_present_count.length}</b></h3></center>
+ 
  
 </div>
 </div>
-          </Item>
+          
         </Grid>
         <Grid size="grow">
-          <Item>
+       
           <div class="card" style={{backgroundColor:"#FF69B4"}}>
 
 <div class="card-body">
-<h5 class="card-title">Total Attendance Absent</h5>
- <h3> <b class="card-text">{filtetfail_absent_count.length}</b></h3>
+     <center><h5 class="card-title">Total Attendance Absent</h5></center>
+     <center> <h3> <b class="card-text">{filtetfail_absent_count.length}</b></h3></center>
+
+
  
 </div>
 </div>
-          </Item>
+          
         </Grid>
 
 
@@ -250,22 +273,25 @@ const Item = styled(Paper)(({ theme }) => ({
       
           <Item>
         
-          <div  id="pie">
+          <div >
           <div class="card" style={{backgroundColor:"#48D1CC"}}>
 
 <div class="card-body">
+
 <h5 class="card-title">Student Panel-{NAME} Result Pie Chart</h5>
-<PieChart 
-      data={datapie}
-      label={({ dataEntry }) => dataEntry.title}
-      labelStyle={{
-        fill: 'white',
-        fontSize: '4px',
-        fontFamily: 'Helvetica Neue, sans-serif',
-         textShadow: '1px 1px 4px #000',
-       
+<PieChart
+      series={[
+                    {
+                                        outerRadius: 140,
+                                        data: datapie,
+                                      },
+                    
+        
+      ]}
+      height={300}
+      slotProps={{
+        legend: { hidden: true },
       }}
-      labelPosition={25}
     />
 </div>
 </div>
@@ -280,12 +306,12 @@ const Item = styled(Paper)(({ theme }) => ({
         
           <Item>
          
-     <div  id="bar">
+     <div  >
      <div class="card" style={{backgroundColor:"#FFB6C1"}}>
 
 <div class="card-body">
 <h5 class="card-title">Student Panel-{NAME} Attendance Per Subjects</h5>
-<BarChart width={698} height={350} data={barchart_data}>
+{/* <BarChart width={698} height={350} data={barchart_data}>
     <CartesianGrid strokeDasharray="3 3" />
     <XAxis dataKey="name" />
     <YAxis domain={[0, 100]} />
@@ -294,7 +320,16 @@ const Item = styled(Paper)(({ theme }) => ({
     <Legend />
     <Bar dataKey="Present" fill="#191970" />
     <Bar dataKey="Absent" fill="#DC143C" />
-  </BarChart>
+  </BarChart> */}
+   <BarChart
+      width={750}
+      height={300}
+      series={[
+        { data: PresentData, label: 'Present', id: 'pvId',color:"green" },
+        { data: AbsentData, label: 'Absent', id: 'uvId',color:"red" },
+      ]}
+      xAxis={[{ data: xLabels, scaleType: 'band' }]}
+    />
  
 </div>
 </div>

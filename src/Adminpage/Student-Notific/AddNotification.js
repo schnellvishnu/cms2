@@ -9,6 +9,7 @@ import Admin_Dashboard from '../Admin_Dashboard';
 import Navbarpage from '../Course/Navbarpage';
 import * as  AiIcons from "react-icons/ai";
 import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 function AddNotification() {
     const[reg_number,setReg_Number]=useState("");
     const[name,setName]=useState("") 
@@ -16,6 +17,7 @@ function AddNotification() {
     const[message,setMessage]=useState("") 
     const[date,setDate]=useState("")   
     const navigate=useNavigate()
+    const[alertuse,setAlertuse]=useState("")
 
 
     const GETSubmit = (e) => {
@@ -141,24 +143,80 @@ function AddNotification() {
     }}
      > </TextField>                                          
     const handleSubmit = (e) => {
-                                e.preventDefault()
-                                alert(reg_number)
-                                alert(date)
-                                axios.post("http://localhost:8000/adminapp/student_notification/",
-                                      {
-                                          "registerno":reg_number,
-                                          "course":course,
-                                          "name":name,
-                                          "message":message,
-                                          'date':date,
-                                          "status":"Sended"
-                                      }
-                                      )
-                                    .then(()=>{
-                                        navigate("/student_notification/")
-                                    })
-                                     
-                          }
+                e.preventDefault()
+                var testPassed = "false";
+                if(reg_number != ""){
+                  testPassed="true"
+                }
+                else{
+                  testPassed ="false"
+                 setAlertuse( 
+                  <Alert severity="error">Please Enter Registernumber.</Alert>
+                )
+                  
+                }
+                if(testPassed == "true"){
+                if(name != ""){
+                  testPassed ="true"
+                }
+                else{
+                  testPassed ="false"
+                  setAlertuse( 
+                    <Alert severity="error">Please Enter Name.</Alert>
+                  )
+                }
+              }
+              if(testPassed == "true"){
+                if(course != ""){
+                  testPassed ="true"
+                }
+                else{
+                  testPassed ="false"
+                  setAlertuse( 
+                    <Alert severity="error">Please Enter Course .</Alert>
+                  )
+                }
+              }
+              if(testPassed == "true"){
+                if(message != ""){
+                  testPassed ="true"
+                }
+                else{
+                  testPassed =" false"
+                  setAlertuse( 
+                    <Alert severity="error">Please Enter Message.</Alert>
+                  )
+                }
+              }
+    
+              if(testPassed == "true"){
+                if(date != ""){
+                  testPassed ="true"
+                }
+                else{
+                  testPassed =" false"
+                  setAlertuse( 
+                    <Alert severity="error">Please Enter Date.</Alert>
+                  )
+                }
+              }
+    
+              if(testPassed == "true"){                  
+                axios.post("http://localhost:8000/adminapp/student_notification/",
+                      {
+                        "registerno":reg_number,
+                        "course":course,
+                        "name":name,
+                        "message":message,
+                        'date':date,
+                        "status":"Sended"
+                      }
+                    )
+                    .then(()=>{
+                                  navigate("/student_notification/")
+                              })
+                            }                    
+                }
                                         
                                       
   return (
@@ -195,6 +253,9 @@ function AddNotification() {
                       <br></br> 
                       </center>   
                       <br></br>
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
                    
                 </Box>
           </Box>

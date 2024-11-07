@@ -8,6 +8,7 @@ import Navbarpage from '../Course/Navbarpage';
 import Admin_Dashboard from '../Admin_Dashboard';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 // import Select from "react-select";
 // import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
@@ -22,6 +23,7 @@ function Add() {
                     const [options, setOptions] = useState([]);
                     const navigate=useNavigate()
                     
+                    const[alertuse,setAlertuse]=useState("")
                     let optionsNew = [];
  
 
@@ -106,8 +108,41 @@ const sl = staff.map(option => ({
                     // <TextField id="outlined-basic" onChange={(e)=>setDate(e.target.value)} label="Enter Date Time"></TextField>  
    
 function submit(e){
-                    e.preventDefault()
-                    alert(couselabel)
+            e.preventDefault()
+            var testPassed = "false";
+            if(subject != ""){
+              testPassed="true"
+            }
+            else{
+              testPassed ="false"
+             setAlertuse( 
+              <Alert severity="error">Please Enter Subject.</Alert>
+            )
+              
+            }
+            if(testPassed == "true"){
+            if(couselabel != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Select Course.</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
+            if(staff_label != ""){
+              testPassed ="true"
+            }
+            else{
+              testPassed ="false"
+              setAlertuse( 
+                <Alert severity="error">Please Enter Staff .</Alert>
+              )
+            }
+          }
+          if(testPassed == "true"){
                     axios.post("http://localhost:8000/adminapp/subjectdetail/",
                                      
                          {
@@ -121,6 +156,7 @@ function submit(e){
                     .then((res)=>{
                           navigate("/subjectdetails")             
                     })
+                  }
                      }                 
   return (
     <div style={{
@@ -197,7 +233,7 @@ function submit(e){
      <br></br>
     <Grid container spacing={2}>
       <Grid item xs={4}>
-      {datefield}
+      {/* {datefield} */}
       </Grid>
       <Grid item xs={4}>
      
@@ -226,6 +262,11 @@ function submit(e){
     </Grid>
     <center><button class="btn btn-primary" onClick={submit}>Save</button></center>
     </center>
+
+    <br></br>
+      <div style={{width:"30%"}}>
+      {alertuse}
+      </div>
       </Box>
       </Box>
     </div>

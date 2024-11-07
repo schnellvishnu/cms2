@@ -96,24 +96,27 @@ function View_Student_Notif( hideAgeColumn) {
                         />
                       </div>
                 </center> 
-    <button class="btn btn-primary" onClick={createpage}>Create</button>
+                <div>
+                <button class="btn btn-primary" onClick={createpage}>Create</button>
+                </div>
+   <br></br>
                                                      
       {data ? (
         // <Card sx={{ minWidth: 900, m: 8 }}>
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{  background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)" }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                  <TableCell ><b>ID</b></TableCell>
-                    <TableCell><b>Register Number</b></TableCell>
-                    <TableCell><b>Name</b></TableCell>
-                    <TableCell><b>Course</b></TableCell>
-                    <TableCell><b>Date</b></TableCell>
+                  <TableCell style={{background:"#29054f",color:"white"}} ><b>ID</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Register Number</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Name</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Course</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Date</b></TableCell>
                     {!hideAgeColumn && 
-                    <TableCell><b>Message</b></TableCell>}
-                    <TableCell><b>Status</b></TableCell>
-                    <TableCell><b>Action</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Message</b></TableCell>}
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Status</b></TableCell>
+                    <TableCell style={{background:"#29054f",color:"white"}}><b>Action</b></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -131,15 +134,15 @@ function View_Student_Notif( hideAgeColumn) {
                           tabIndex={-1}
                           key={row.code}
                         >
-                          <TableCell>{row.id}</TableCell>
-                          <TableCell>{row.registerno}</TableCell>
-                          <TableCell>{row.name}</TableCell>
-                          <TableCell>{row.course}</TableCell>
-                          <TableCell>{row.date}</TableCell>
+                          <TableCell style={{color:"white"}}>{row.id}</TableCell>
+                          <TableCell style={{color:"white"}}>{row.registerno}</TableCell>
+                          <TableCell style={{color:"white"}}>{row.name}</TableCell>
+                          <TableCell style={{color:"white"}}>{row.course}</TableCell>
+                          <TableCell style={{color:"white"}}>{row.date}</TableCell>
                           {!hideAgeColumn &&
-                          <TableCell >{row.message}</TableCell>}              
-                          <TableCell >{row.status}</TableCell>
-                          <TableCell>
+                          <TableCell style={{color:"white"}} >{row.message}</TableCell>}              
+                          <TableCell style={{color:"white"}} >{row.status}</TableCell>
+                          <TableCell style={{color:"white"}}>
                                     {row.status =="Sended" ?   <Button variant="outlined" id="notificationbutton" onClick={() => handleClickOpen(row)}>
                                     New Notification
                                     </Button> :  <Button variant="outlined" onClick={() => handleClickOpen(row)}>
@@ -166,13 +169,14 @@ function View_Student_Notif( hideAgeColumn) {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
+              rowsPerPageOptions={[5,10, 25, 100]}
               component="div"
               count={data.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
+              style={{background:"#29054f",color:"white"}}
             />
            </Paper>
         // </Card>

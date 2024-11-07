@@ -319,7 +319,38 @@ width:10%;
   animation: backgroundAnimation 5s infinite;
 }
 /* end of animation */
+/* nav bar welcom text styling */
+.patterns {
+  height: 4vh;
+}
+svg text {
+  /* font-family: Lora; */
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 10px;
+  stroke: #b78507;
+  font-size: 22px;
+  font-weight: 200;
+  stroke-width: 2;
+ 
+  animation: textAnimate 5s infinite alternate;
+  
+}
 
+@keyframes textAnimate {
+  0% {
+    stroke-dasharray: 0 50%;
+    stroke-dashoffset:  20%;
+    fill:hsl(189, 68%, 75%)
+
+  }
+  
+  100% {
+    stroke-dasharray: 50% 0;
+    stroke-dashoffstet: -20%;
+    fill: hsla(189, 68%, 75%,0%)
+  }
+}
+/* end */
 
 @keyframes App-logo-spin {
   from {

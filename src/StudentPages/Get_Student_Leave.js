@@ -39,10 +39,10 @@ function Get_Student_Leave() {
                       { field: 'date_on', headerName: 'Date On', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 190 },
                       { field: 'date_to', headerName: 'Date To', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 180 },
                       { field: 'message', headerName: 'message', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 140},
-                      { field: 'status', headerName: 'Status', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 170},
+                      { field: 'status', headerName: 'Status', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 200},
                       { field: 'actions', headerName: 'Actions', headerClassName: 'super-app-theme--header',headerAlign: 'center', width: 100,
                       renderCell: (params) => {
-                        if(params.row.status === "sended" ) {
+                        if(params.row.status === "Pending" ) {
                           return <button
                             className="btn btn-danger" 
                            
@@ -75,8 +75,7 @@ function Get_Student_Leave() {
                       <Student_Dashboard/>
                         <Box component="main2" sx={{ flexGrow: 4, p: 1, height: 300,
         width: '100%',
-        '& .super-app-theme--header': {
-          backgroundColor: '#5F9EA0	',} }}>
+         }}>
                           <Navbarpage/>
                             <br/> 
                             <button class="btn btn-primary" onClick={createpage}>Create</button>
@@ -84,16 +83,21 @@ function Get_Student_Leave() {
                             </center> 
                          
                             <br/> 
-                            <div style={{ height: 500, width: '92%' }}>
+                            <div style={{ height: 500, width: '96%' }}>
 
-                              <DataGrid sx={{
-                                boxShadow: 6,
-                                border: 4,
-                                borderColor: '#008B8B	',
-                                '& .MuiDataGrid-cell:hover': {
-                                  color: 'primary.main',
-                                },
-                }} rows={data} columns={columns} getRowId={(row) => row.id}  />
+                              <DataGrid  sx={{
+                        boxShadow: 6,
+                        border: 4,
+                        borderColor: 'black',
+                        '& .MuiDataGrid-cell:hover': {
+                          color: 'primary.main',
+                        },
+                        '& .super-app-theme--header': {
+                          backgroundColor: ' #1b0720',
+                        },
+                        color:"white",
+                        background:"linear-gradient(90deg, rgba(14,16,33,1) 25%, rgba(3,8,41,1) 55%, rgba(0,1,1,1) 89%)"
+        }} rows={data} columns={columns} getRowId={(row) => row.id}  />
                                             
                             </div>
                         </Box>
